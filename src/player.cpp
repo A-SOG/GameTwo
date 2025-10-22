@@ -10,7 +10,7 @@ void Player::init()
     sprite_move_ = SpriteAnim::addSpriteAnimChild(this, "assect/sprite/ghost-move.png", 2.0f);
     sprite_move_->setActive(false);
 
-    collider_ = Collider::addColliderChild(this, sprite_idle_->getSize());
+    collider_ = Collider::addColliderChild(this, sprite_idle_->getSize()/2.0f);
 }
 
 void Player::handleEvents(SDL_Event& event)

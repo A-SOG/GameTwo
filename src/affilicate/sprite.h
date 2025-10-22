@@ -22,12 +22,11 @@ protected:
 	Texture texture_;
 	bool is_finish_ = false;
 public:
-	static Sprite* addSpriteChild(ObjectScreen* parent, const std::string& file_path, float scale = 1.0f);
+	static Sprite* addSpriteChild(ObjectScreen* parent, const std::string& file_path, float scale = 1.0f,Anchor anchor=Anchor::CENTER);
 	virtual void render()override;
 
 	Texture getTexture() const { return texture_; }
 	virtual void setTexture(const Texture& texture);
-	void setScale(float scale) { size_ *= scale; }
 
 	void setFlip(bool is_flip) { texture_.is_flip = is_flip; }
 	void setAngle(float angle) {  texture_.angle=angle; }
