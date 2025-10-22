@@ -73,6 +73,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>C:\Users\29147\Desktop\game\GameTwo\vender\SDL3\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\29147\Desktop\game\GameTwo\vender\SDL3\lib;$(LibraryPath)</LibraryPath>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -128,7 +129,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\affilicate\sprite.cpp" />
+    <ClCompile Include="src\affilicate\collider.cpp" />
+    <ClCompile Include="src\affilicate\sprite.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\affilicate\sprite_anim.cpp" />
     <ClCompile Include="src\core\Actor.cpp" />
     <ClCompile Include="src\core\asset_store.cpp" />
@@ -143,6 +147,7 @@
     <ClCompile Include="src\scene_main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\affilicate\collider.h" />
     <ClInclude Include="src\affilicate\sprite.h" />
     <ClInclude Include="src\affilicate\sprite_anim.h" />
     <ClInclude Include="src\core\Actor.h" />

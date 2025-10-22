@@ -60,6 +60,10 @@ public:
 
 	//渲染
 	void renderTexture(const Texture& texture, const glm::vec2& position, const glm::vec2& size);// 渲染纹理
+
+	//渲染圆形纹理
+	void renderFillCircle(const glm::vec2& position, const glm::vec2 size, float alpha);
+
 	//工具函数
 	void drawGrid(const glm::vec2& top_left, const glm::vec2& botton_right, float grid_width, SDL_FColor fcolor); // 绘制网格
 	void drawBoundary(const glm::vec2& top_left, const glm::vec2& botton_right, float boundary_width, SDL_FColor fcolor); // 绘制边界

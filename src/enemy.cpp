@@ -1,6 +1,6 @@
 #include"enemy.h"
 #include"core/scene.h"
-
+#include "affilicate/collider.h"
 void Enemy::init()
 {
 	Actor::init();
@@ -13,6 +13,8 @@ void Enemy::init()
     anim_die_->setLoop(false);
 
     current_anim_ = anim_normal_;
+
+    collider_ = Collider::addColliderChild(this, current_anim_->getSize());
 }
 
 
@@ -21,14 +23,8 @@ void Enemy::update(float dt)
     Actor::update(dt);
     aim_target(target_);
     move(dt);
-    timer_ += dt;
-    if (timer_ > 1.0f && timer_ < 2.0f) {
-        changeState(State::HURT);
-    }
-    else if (timer_ > 2.0f) {
-        changeState(State::DIE);
-    }
     remove();
+    attack();
 }
 
 
@@ -70,6 +66,15 @@ void Enemy::changeState(State new_state)
         break;
     }
     current_state_ = new_state;
+}
+
+void Enemy::attack()
+{
+    if (!collider_ || target_->getCollider() == nullptr)return;
+    if (collider_->isColliding(target_->getCollider()))
+    {
+        SDL_Log("circle vs circle");
+    }
 }
 void Enemy::remove()
 {

@@ -16,4 +16,5 @@ public:
 		render_position_ = render_position;
 
 	}
+	virtual glm::vec2 getPosition()const { return glm::vec2(0); }
 };
