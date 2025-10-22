@@ -1,1 +1,39 @@
 #pragma once
+#include"object.h"
+#include<glm/glm.hpp>
+#include<vector>
+#include "object_world.h"
+
+class Scene :public Object
+{
+protected:
+	glm::vec2 camera_position_ = glm::vec2(0);//限制玩家视角
+	glm::vec2 world_size_ = glm::vec2(0); // 世界大小
+	std::vector<ObjectWorld*> children_world_;
+	std::vector<ObjectScreen*> children_screen_;
+
+public:
+
+	Scene() = default;
+
+	virtual~Scene() = default;
+
+
+	virtual void init() override {}
+	virtual void handleEvents(SDL_Event& event) override;
+	virtual void update(float dt) override;
+	virtual void render() override;
+	virtual void clean() override;
+
+	virtual void addChild(Object* child) override;
+	virtual void removeChild(Object* child) override;
+
+	glm::vec2 worldToScreen(const glm::vec2& world_position)const { return world_position - camera_position_; };
+	glm::vec2 screenToWorld(const glm::vec2& screen_position)const { return screen_position + camera_position_; };
+
+
+	glm::vec1 getCameraPosition()const { return camera_position_; };
+	void setCameraPosition(const glm::vec2& camera_position);
+	glm::vec2 getWorldSize()const { return world_size_; };
+	void setWorldSize(const glm::vec2& world_size) { world_size_ = world_size; };
+};

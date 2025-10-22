@@ -70,6 +70,10 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Users\29147\Desktop\game\GameTwo\vender\SDL3\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\29147\Desktop\game\GameTwo\vender\SDL3\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -106,6 +110,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL3_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -123,14 +128,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\affilicate\sprite.cpp" />
+    <ClCompile Include="src\affilicate\sprite_anim.cpp" />
+    <ClCompile Include="src\core\Actor.cpp" />
+    <ClCompile Include="src\core\asset_store.cpp" />
     <ClCompile Include="src\core\game.cpp" />
+    <ClCompile Include="src\core\object.cpp" />
+    <ClCompile Include="src\core\object_affiliate.cpp" />
+    <ClCompile Include="src\core\object_world.cpp" />
+    <ClCompile Include="src\core\scene.cpp" />
+    <ClCompile Include="src\enemy.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\scene_main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\affilicate\sprite.h" />
+    <ClInclude Include="src\affilicate\sprite_anim.h" />
+    <ClInclude Include="src\core\Actor.h" />
+    <ClInclude Include="src\core\asset_store.h" />
+    <ClInclude Include="src\core\defs.h" />
     <ClInclude Include="src\core\game.h" />
     <ClInclude Include="src\core\object.h" />
+    <ClInclude Include="src\core\object_affiliate.h" />
+    <ClInclude Include="src\core\object_scrren.h" />
+    <ClInclude Include="src\core\object_world.h" />
     <ClInclude Include="src\core\scene.h" />
+    <ClInclude Include="src\enemy.h" />
+    <ClInclude Include="src\player.h" />
     <ClInclude Include="src\scene_main.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
