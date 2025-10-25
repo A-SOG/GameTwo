@@ -159,7 +159,6 @@
     <ClInclude Include="src\core\game.h" />
     <ClInclude Include="src\core\object.h" />
     <ClInclude Include="src\core\object_affiliate.h" />
-    <ClInclude Include="src\core\object_screen.h" />
     <ClInclude Include="src\core\object_scrren.h" />
     <ClInclude Include="src\core\object_world.h" />
     <ClInclude Include="src\core\scene.h" />

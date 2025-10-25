@@ -113,9 +113,6 @@
     <ClInclude Include="vender\SDL3\include\SDL3_mixer\SDL_mixer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\object_screen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\raw\stats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -126,8 +123,8 @@
   <ItemGroup>
     <None Include=".gitattributes" />
     <None Include=".gitignore" />
-    <None Include="SDL3_mixer.dll" />
     <None Include="assect\bgm\OhMyGhost.ogg" />
+    <None Include="SDL3_mixer.dll" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="assect\credits.txt" />
