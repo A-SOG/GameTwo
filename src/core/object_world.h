@@ -10,10 +10,10 @@ class ObjectWorld :public ObjectScreen
 {
 protected:
 	glm::vec2 position_ = glm::vec2(0, 0); // 世界位置
-    virtual void init() override { type_ = ObjectType::OBJECT_WORLD; }
+   
     Collider* collider_ = nullptr;
 public:
-
+    virtual void init() override { type_ = ObjectType::OBJECT_WORLD; }
     virtual void update(float dt) override;
 
    virtual glm::vec2 getPosition() const override{ return position_; }

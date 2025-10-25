@@ -147,6 +147,7 @@
     <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\raw\stats.cpp" />
     <ClCompile Include="src\scene_main.cpp" />
+    <ClCompile Include="src\spawner.cpp" />
     <ClCompile Include="src\world\effect.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +167,7 @@
     <ClInclude Include="src\player.h" />
     <ClInclude Include="src\raw\stats.h" />
     <ClInclude Include="src\scene_main.h" />
+    <ClInclude Include="src\spawner.h" />
     <ClInclude Include="src\world\effect.h" />
     <ClInclude Include="vender\SDL3\include\SDL3_mixer\SDL_mixer.h" />
   </ItemGroup>

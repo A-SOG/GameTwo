@@ -2,6 +2,19 @@
 #include"core/scene.h"
 #include "affilicate/collider.h"
 #include "raw/stats.h"
+Enemy* Enemy::addEnemyChild(Object* parent, glm::vec2 pos, Player* target)
+{
+    auto enemy = new Enemy();
+    enemy->init();
+    enemy->setPosition(pos);
+    enemy->set_target(target);
+    if (parent)
+    {
+        parent->addChild(enemy);
+    }
+    return enemy;
+
+}
 void Enemy::init()
 {
 	Actor::init();
@@ -70,6 +83,12 @@ void Enemy::changeState(State new_state)
     }
     current_state_ = new_state;
 }
+void Enemy::remove()
+{
+    if (anim_die_->getFinish()) {
+        need_remove_ = true;
+    }
+}
 
 void Enemy::attack()
 {
@@ -79,11 +98,5 @@ void Enemy::attack()
         if (stats_ && target_->getStats()) {
             target_->takeDamage(stats_->getDamage());
         }
-    }
-}
-void Enemy::remove()
-{
-    if (anim_die_->getFinish()) {
-        need_remove_ = true;
     }
 }

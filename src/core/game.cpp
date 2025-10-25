@@ -5,6 +5,7 @@
 #include"../affilicate/sprite.h"
 #include "scene.h"
 #include"Actor.h"
+
 void Game::init(std::string title , int width, int height) {
 
 
