@@ -1,4 +1,5 @@
 #include "Actor.h"
+#include "../raw/stats.h"
 #include "scene.h"
 void Actor::move(float dt)
 {
@@ -6,4 +7,15 @@ void Actor::move(float dt)
 
 	position_ = glm::clamp(position_, glm::vec2(0), game_.getCurrentScene()->getWorldSize());
 
+}
+void Actor::takeDamage(float damage)
+{
+    if (!stats_) return;
+    stats_->takeDamage(damage);
+}
+
+bool Actor::getIsAlive() const
+{
+    if (!stats_) return true;
+    return stats_->getIsAlive();
 }

@@ -57,6 +57,21 @@
     <ClCompile Include="src\affilicate\collider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\affiliate\collider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\affiliate\sprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\affiliate\sprite_anim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\raw\stats.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\world\effect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\scene_main.h">
@@ -104,5 +119,70 @@
     <ClInclude Include="src\affilicate\collider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="vender\SDL3\include\SDL3_mixer\SDL_mixer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\affiliate\collider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\affiliate\sprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\affiliate\sprite_anim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\object_screen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\raw\stats.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\world\effect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
+    <None Include="SDL3_mixer.dll" />
+    <None Include="assect\bgm\OhMyGhost.ogg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="assect\credits.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="assect\bgm\Spooky music.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assect\effect\184_3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assect\effect\184_3_.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assect\effect\1764.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assect\effect\Thunderstrike w blur.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assect\sprite\ghostDead-Sheet.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assect\sprite\ghost-idle.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assect\sprite\ghost-move.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assect\sprite\ghost-Sheet.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assect\sprite\ghostHurt-Sheet.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assect\font\VonwaonBitmap-16px.ttf" />
   </ItemGroup>
 </Project>

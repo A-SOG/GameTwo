@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\29147\Desktop\game\GameTwo\vender\SDL3\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\29147\Desktop\game\GameTwo\vender\SDL3\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\game\game2\vender\SDL3\include\SDL3_mixer;C:\Users\29147\Desktop\game\GameTwo\vender\SDL3\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\game\game2\vender\SDL3\lib;C:\Users\29147\Desktop\game\GameTwo\vender\SDL3\lib;$(LibraryPath)</LibraryPath>
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -107,6 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\game\game2\vender\SDL3\include\SDL3_mixer;C:\game\game2\vender\SDL3\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,6 +130,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\affiliate\collider.cpp" />
+    <ClCompile Include="src\affiliate\sprite.cpp" />
+    <ClCompile Include="src\affiliate\sprite_anim.cpp" />
     <ClCompile Include="src\affilicate\collider.cpp" />
     <ClCompile Include="src\affilicate\sprite.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -144,9 +148,14 @@
     <ClCompile Include="src\enemy.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\player.cpp" />
+    <ClCompile Include="src\raw\stats.cpp" />
     <ClCompile Include="src\scene_main.cpp" />
+    <ClCompile Include="src\world\effect.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\affiliate\collider.h" />
+    <ClInclude Include="src\affiliate\sprite.h" />
+    <ClInclude Include="src\affiliate\sprite_anim.h" />
     <ClInclude Include="src\affilicate\collider.h" />
     <ClInclude Include="src\affilicate\sprite.h" />
     <ClInclude Include="src\affilicate\sprite_anim.h" />
@@ -156,12 +165,42 @@
     <ClInclude Include="src\core\game.h" />
     <ClInclude Include="src\core\object.h" />
     <ClInclude Include="src\core\object_affiliate.h" />
+    <ClInclude Include="src\core\object_screen.h" />
     <ClInclude Include="src\core\object_scrren.h" />
     <ClInclude Include="src\core\object_world.h" />
     <ClInclude Include="src\core\scene.h" />
     <ClInclude Include="src\enemy.h" />
     <ClInclude Include="src\player.h" />
+    <ClInclude Include="src\raw\stats.h" />
     <ClInclude Include="src\scene_main.h" />
+    <ClInclude Include="src\world\effect.h" />
+    <ClInclude Include="vender\SDL3\include\SDL3_mixer\SDL_mixer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
+    <None Include="assect\bgm\OhMyGhost.ogg" />
+    <None Include="SDL3_mixer.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="assect\credits.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="assect\bgm\Spooky music.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assect\effect\1764.png" />
+    <Image Include="assect\effect\184_3.png" />
+    <Image Include="assect\effect\184_3_.png" />
+    <Image Include="assect\effect\Thunderstrike w blur.png" />
+    <Image Include="assect\sprite\ghost-idle.png" />
+    <Image Include="assect\sprite\ghost-move.png" />
+    <Image Include="assect\sprite\ghost-Sheet.png" />
+    <Image Include="assect\sprite\ghostDead-Sheet.png" />
+    <Image Include="assect\sprite\ghostHurt-Sheet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assect\font\VonwaonBitmap-16px.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

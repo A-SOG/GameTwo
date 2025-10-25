@@ -1,11 +1,13 @@
 #pragma once
 #include"core/Actor.h"
 #include "affilicate/sprite_anim.h"
+#include "world/effect.h"
 class Player :public Actor
 {
 private:
     SpriteAnim* sprite_idle_ = nullptr;//静止动画
     SpriteAnim* sprite_move_ = nullptr;//移动
+    Effect* effect_ = nullptr;
     bool is_moving_ = false;
 public:
 	virtual void init() override;
@@ -19,4 +21,5 @@ public:
     void syncCamera();
     void checkState();//检查并更新状态
     void changeState(bool is_moving);//根据状态切换动画）
+    void checkIsDead();
 };

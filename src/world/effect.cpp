@@ -1,6 +1,5 @@
 #include "effect.h"
 #include "../core/scene.h"
-
 Effect* Effect::addEffectChild(Object* parent, const std::string& file_path, glm::vec2 pos, float scale, ObjectWorld* next_object)
 {
     auto effect = new Effect();

@@ -30,6 +30,7 @@ void Scene::update(float dt)
 			it = children_world_.erase(it);
 			child->clean();
 			delete child;
+			child = nullptr;
 		}
 
 		else {
@@ -46,6 +47,7 @@ void Scene::update(float dt)
 			it = children_screen_.erase(it);
 			child->clean();
 			delete child;
+			child = nullptr;
 		}
 		else {
 			if (child->getActive()) {

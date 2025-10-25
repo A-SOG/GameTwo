@@ -10,6 +10,11 @@ void Object::handleEvents(SDL_Event& event) {
 }
 
 void Object::update(float dt) {
+    for (auto& child : object_to_add_) {
+        addChild(child);
+    }
+    object_to_add_.clear();
+
     for (auto it = children_.begin(); it != children_.end();)
     {
         auto child = *it;
@@ -18,6 +23,7 @@ void Object::update(float dt) {
             it = children_.erase(it);
             child->clean();
             delete child;
+            child = nullptr;
         }
         else {
             if (child->getActive())
