@@ -2,15 +2,18 @@
 #include"player.h"
 #include "enemy.h"
 #include "world/effect.h"
+#include "screen/ui_mouse.h"
 void SceneMain::init()
 {
 	//初始化世界大小
+	SDL_HideCursor();
 	world_size_ = game_.getScreenSize() * 3.0f;
 	camera_position_ = world_size_ / 2.0f - game_.getScreenSize() / 2.0f;
 	player_ = new Player();
 	player_->init();
 	player_->setPosition(world_size_ / 2.0f);
 	addChild(player_);
+	ui_mouse_ = UIMouse::addUIMouseChild(this, "assect/UI/29.png", "assets/UI/30.png", 1.0f, Anchor::CENTER);
 
 	auto enemy = new Enemy();
 	enemy->init();

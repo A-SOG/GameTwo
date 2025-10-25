@@ -1,7 +1,9 @@
 #pragma once
 #include"core/scene.h"
 
+class Spawner;
 class Player;
+class UIMouse; 
 class SceneMain : public Scene
 {
 private:
@@ -9,6 +11,8 @@ private:
     void renderBackground();
 
     Player* player_ = nullptr; // 玩家
+    Spawner* spawner_ = nullptr;
+    UIMouse* ui_mouse_ = nullptr;
 public:
     SceneMain() = default;
     virtual ~SceneMain() = default;
