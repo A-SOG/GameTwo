@@ -57,15 +57,6 @@
     <ClCompile Include="src\affilicate\collider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\affiliate\collider.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\affiliate\sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\affiliate\sprite_anim.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\raw\stats.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -120,15 +111,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="vender\SDL3\include\SDL3_mixer\SDL_mixer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\affiliate\collider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\affiliate\sprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\affiliate\sprite_anim.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\core\object_screen.h">

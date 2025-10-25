@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\game\game2\vender\SDL3\include\SDL3_mixer;C:\Users\29147\Desktop\game\GameTwo\vender\SDL3\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\game\game2\vender\SDL3\lib;C:\Users\29147\Desktop\game\GameTwo\vender\SDL3\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\game\GameTwo\vender\SDL3\include\SDL3_mixer;C:\game\game2\vender\SDL3\include\SDL3_mixer;C:\Users\29147\Desktop\game\GameTwo\vender\SDL3\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\game\GameTwo\vender\SDL3\lib;C:\game\game2\vender\SDL3\lib;C:\Users\29147\Desktop\game\GameTwo\vender\SDL3\lib;$(LibraryPath)</LibraryPath>
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -107,7 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\game\game2\vender\SDL3\include\SDL3_mixer;C:\game\game2\vender\SDL3\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>SDL3_mixer.lib;C:\game\game2\vender\SDL3\include\SDL3_mixer;C:\game\game2\vender\SDL3\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,9 +130,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\affiliate\collider.cpp" />
-    <ClCompile Include="src\affiliate\sprite.cpp" />
-    <ClCompile Include="src\affiliate\sprite_anim.cpp" />
     <ClCompile Include="src\affilicate\collider.cpp" />
     <ClCompile Include="src\affilicate\sprite.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -153,9 +150,6 @@
     <ClCompile Include="src\world\effect.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\affiliate\collider.h" />
-    <ClInclude Include="src\affiliate\sprite.h" />
-    <ClInclude Include="src\affiliate\sprite_anim.h" />
     <ClInclude Include="src\affilicate\collider.h" />
     <ClInclude Include="src\affilicate\sprite.h" />
     <ClInclude Include="src\affilicate\sprite_anim.h" />
