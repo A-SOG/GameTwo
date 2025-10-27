@@ -3,6 +3,7 @@
 #include "enemy.h"
 #include "world/effect.h"
 #include "screen/ui_mouse.h"
+#include "world/spell.h"
 void SceneMain::init()
 {
 	//初始化世界大小

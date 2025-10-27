@@ -146,10 +146,13 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\raw\stats.cpp" />
+    <ClCompile Include="src\raw\weapon_thunder.cpp" />
+    <ClCompile Include="src\raw\weapon.cpp" />
     <ClCompile Include="src\scene_main.cpp" />
     <ClCompile Include="src\screen\ui_mouse.cpp" />
     <ClCompile Include="src\spawner.cpp" />
     <ClCompile Include="src\world\effect.cpp" />
+    <ClCompile Include="src\world\spell.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\affilicate\collider.h" />
@@ -167,10 +170,13 @@
     <ClInclude Include="src\enemy.h" />
     <ClInclude Include="src\player.h" />
     <ClInclude Include="src\raw\stats.h" />
+    <ClInclude Include="src\raw\weapon.h" />
+    <ClInclude Include="src\raw\weapon_thunder.h" />
     <ClInclude Include="src\scene_main.h" />
     <ClInclude Include="src\screen\ui_mouse.h" />
     <ClInclude Include="src\spawner.h" />
     <ClInclude Include="src\world\effect.h" />
+    <ClInclude Include="src\world\spell.h" />
     <ClInclude Include="vender\SDL3\include\SDL3_mixer\SDL_mixer.h" />
   </ItemGroup>
   <ItemGroup>

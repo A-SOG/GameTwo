@@ -22,5 +22,6 @@ public:
         
     Collider* getCollider() { return collider_; }
     void setCollider(Collider* collider) { collider_ = collider; }
+    virtual void takeDamage(float damage) { return; }
 
 };
