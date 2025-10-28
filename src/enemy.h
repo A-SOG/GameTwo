@@ -17,6 +17,8 @@ private:
 	SpriteAnim* anim_hurt_ = nullptr;
 	SpriteAnim* anim_die_ = nullptr;
 	SpriteAnim* current_anim_ = nullptr;
+
+	int score_ = 10;
 	
 public:
 	static Enemy* addEnemyChild(Object* parent, glm::vec2 pos, Player* target);
@@ -31,6 +33,6 @@ public:
 	void remove();
 
 	Player* get_target() { return target_; }
-	void set_target(Player* target) { target_ = target; }
+	void setTarget(Player* target) { target_ = target; }
 
 };

@@ -4,6 +4,7 @@
 //最大速度：限制角色移动的最大速度
 //相关的getter和setter：用于访问和修改这些属性
 class Stats;
+class AffiliateBar;
 class Actor :public ObjectWorld
 {
 protected:
@@ -11,9 +12,11 @@ protected:
     Stats* stats_ = nullptr; // 角色属性
     glm::vec2 velocity_ = glm::vec2(0, 0); // 速度
     float max_speed_ = 100.0f; // 最大速度大小
+    AffiliateBar* health_bar_ = nullptr;  // 生命条
 
 public:   
-    virtual void takeDamage(float damage);
+    virtual void update(float dt) override;
+    virtual void takeDamage(float damage) override;
     void move(float dt);
     glm::vec2 getVelocity() const { return velocity_; }
     void setVelocity(const glm::vec2& velocity) { velocity_ = velocity; }
@@ -22,4 +25,9 @@ public:
     Stats* getStats() const { return stats_; }
     void setStats(Stats* stats) { stats_ = stats; }
     bool getIsAlive() const;
+    void setHealthBar(AffiliateBar* health_bar) { health_bar_ = health_bar; }
+    AffiliateBar* getHealthBar() const { return health_bar_; }
+
+private:
+    void updateHealthBar();
 };

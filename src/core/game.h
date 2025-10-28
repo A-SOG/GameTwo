@@ -23,13 +23,16 @@ class Game {
 
 	SDL_Window * window_ = nullptr;//窗口
 	SDL_Renderer* renderer_ = nullptr;//渲染
-
+	TTF_TextEngine* ttf_engine_ = nullptr;
 	std::mt19937 gen_ = std::mt19937(std::random_device{}());
 	//私有构造函数
 
 	Uint64 FPS_ = 60;//fps
 	Uint64 frame_delay_ = 0;//帧延长，单位ns
 	float dt_ = 0.0f;//帧间隔
+
+	int score_ = 0;
+	int high_score_ = 0;
 	Game() {}
 
 	//禁止拷贝构造函数与赋值操作符
@@ -65,15 +68,27 @@ public:
 	glm::vec2 getMousePosition() const { return mouse_position_; } // 获取鼠标位置
 	SDL_MouseButtonFlags getMouseButtons() const { return mouse_buttons_; } // 获取鼠标按钮
 	//渲染
-	void renderTexture(const Texture& texture, const glm::vec2& position, const glm::vec2& size);// 渲染纹理
+   // 获取分数
+	void setScore(int score);
+	int getScore() const { return score_; } 
+	// 设置最高分
+	void setHighScore(int high_score) { high_score_ = high_score; }
+	// 获取最高分
+	int getHighScore() const { return high_score_; } 
+	void addScore(int score);
+	void renderTexture(const Texture& texture, const glm::vec2& position, const glm::vec2& size,const glm::vec2&mask=glm::vec2(1.0f));// 渲染纹理
 
 	//渲染圆形纹理
 	void renderFillCircle(const glm::vec2& position, const glm::vec2 size, float alpha);
 
+	//渲染能量条
+	void renderHBar(const glm::vec2& position, const glm::vec2& size, float percent, SDL_FColor color);
+
 	//工具函数
 	void drawGrid(const glm::vec2& top_left, const glm::vec2& botton_right, float grid_width, SDL_FColor fcolor); // 绘制网格
 	void drawBoundary(const glm::vec2& top_left, const glm::vec2& botton_right, float boundary_width, SDL_FColor fcolor); // 绘制边界
-
+	// 文字函数
+	TTF_Text* createTTF_Text(const std::string& text, const std::string& font_path, int font_size = 16);
 	//随机数生成
 
 	float randomFloat(float min,float max)
@@ -82,7 +97,7 @@ public:
 	}
 	int randomInt(int min,int max)
 	{
-		std::uniform_int_distribution<int>(min, max)(gen_);
+		return std::uniform_int_distribution<int>(min, max)(gen_);
 	}
 	glm::vec2 randomVec2(const glm::vec2& min, const glm::vec2& max)
 	{

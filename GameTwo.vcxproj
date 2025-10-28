@@ -130,11 +130,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\affilicate\affiliate_bar.cpp" />
     <ClCompile Include="src\affilicate\collider.cpp" />
     <ClCompile Include="src\affilicate\sprite.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\affilicate\sprite_anim.cpp" />
+    <ClCompile Include="src\affilicate\text_label.cpp" />
     <ClCompile Include="src\core\Actor.cpp" />
     <ClCompile Include="src\core\asset_store.cpp" />
     <ClCompile Include="src\core\game.cpp" />
@@ -149,15 +151,20 @@
     <ClCompile Include="src\raw\weapon_thunder.cpp" />
     <ClCompile Include="src\raw\weapon.cpp" />
     <ClCompile Include="src\scene_main.cpp" />
+    <ClCompile Include="src\screen\hud_skill.cpp" />
+    <ClCompile Include="src\screen\hud_stats.cpp" />
+    <ClCompile Include="src\screen\hud_text.cpp" />
     <ClCompile Include="src\screen\ui_mouse.cpp" />
     <ClCompile Include="src\spawner.cpp" />
     <ClCompile Include="src\world\effect.cpp" />
     <ClCompile Include="src\world\spell.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\affilicate\affiliate_bar.h" />
     <ClInclude Include="src\affilicate\collider.h" />
     <ClInclude Include="src\affilicate\sprite.h" />
     <ClInclude Include="src\affilicate\sprite_anim.h" />
+    <ClInclude Include="src\affilicate\text_label.h" />
     <ClInclude Include="src\core\Actor.h" />
     <ClInclude Include="src\core\asset_store.h" />
     <ClInclude Include="src\core\defs.h" />
@@ -173,6 +180,9 @@
     <ClInclude Include="src\raw\weapon.h" />
     <ClInclude Include="src\raw\weapon_thunder.h" />
     <ClInclude Include="src\scene_main.h" />
+    <ClInclude Include="src\screen\hud_skill.h" />
+    <ClInclude Include="src\screen\hud_stats.h" />
+    <ClInclude Include="src\screen\hud_text.h" />
     <ClInclude Include="src\screen\ui_mouse.h" />
     <ClInclude Include="src\spawner.h" />
     <ClInclude Include="src\world\effect.h" />

@@ -4,6 +4,9 @@
 #include "world/effect.h"
 #include "screen/ui_mouse.h"
 #include "world/spell.h"
+#include "spawner.h"
+#include "screen/hud_stats.h"
+#include "screen/hud_text.h"
 void SceneMain::init()
 {
 	//初始化世界大小
@@ -14,14 +17,16 @@ void SceneMain::init()
 	player_->init();
 	player_->setPosition(world_size_ / 2.0f);
 	addChild(player_);
-	ui_mouse_ = UIMouse::addUIMouseChild(this, "assect/UI/29.png", "assets/UI/30.png", 1.0f, Anchor::CENTER);
 
-	auto enemy = new Enemy();
-	enemy->init();
-	enemy->set_target(player_);
-	enemy->setPosition(world_size_ / 2.0f + glm::vec2(200.0f));
-	addChild(enemy);
-	Effect::addEffectChild(this, "assect/effect/184_3.png", world_size_ / 2.0f + glm::vec2(200.0f), 1.0f, enemy);
+	spawner_ = new Spawner();
+	spawner_->init();
+	spawner_->setTarget(player_);
+	addChild(spawner_);
+
+	hud_stats_ = HUDStats::addHUDStatsChild(this, player_, glm::vec2(30.f));
+	hud_text_score_ = HUDText::addHUDTextChild(this, "Score: 0", glm::vec2(game_.getScreenSize().x - 120.f, 30.f), glm::vec2(200, 50));
+
+	ui_mouse_ = UIMouse::addUIMouseChild(this, "assect/UI/29.png", "assect/UI/30.png", 1.0f, Anchor::CENTER);   // 最后添加
 
 }
 
@@ -33,15 +38,9 @@ void SceneMain::handleEvents(SDL_Event& event)
 void SceneMain::update(float dt)
 {
 	Scene::update(dt);
+	updateScore();
 }
 
-void SceneMain::renderBackground()
-{//计算世界左上角和右下角在屏幕上的坐标
-	auto start = -camera_position_;
-	auto end = world_size_ - camera_position_;
-	game_.drawGrid(start, end, 80.0f, { 0.5,0.5,0.5,1.0 });
-	game_.drawBoundary(start, end, 5.0f, { 1.0, 1.0, 1.0, 1.0 });
-}
 
 void SceneMain::render()
 {
@@ -51,7 +50,20 @@ void SceneMain::render()
 	
 }
 
+
 void SceneMain::clean() {
 	Scene::clean();
 
 }
+void SceneMain::renderBackground()
+{//计算世界左上角和右下角在屏幕上的坐标
+	auto start = -camera_position_;
+	auto end = world_size_ - camera_position_;
+	game_.drawGrid(start, end, 80.0f, { 0.5,0.5,0.5,1.0 });
+	game_.drawBoundary(start, end, 5.0f, { 1.0, 1.0, 1.0, 1.0 });
+}
+void SceneMain::updateScore()
+{
+	hud_text_score_->setText("Score: " + std::to_string(game_.getScore()));
+}
+

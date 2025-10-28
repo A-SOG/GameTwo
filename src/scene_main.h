@@ -3,16 +3,18 @@
 
 class Spawner;
 class Player;
-class UIMouse; 
+class UIMouse;
+class HUDStats;
+class HUDText;
 class SceneMain : public Scene
 {
-private:
 
-    void renderBackground();
-
-    Player* player_ = nullptr; // 玩家
+    Player* player_ = nullptr;
     Spawner* spawner_ = nullptr;
     UIMouse* ui_mouse_ = nullptr;
+    HUDStats* hud_stats_ = nullptr;
+    HUDText* hud_text_score_ = nullptr;
+
 public:
     SceneMain() = default;
     virtual ~SceneMain() = default;
@@ -23,4 +25,7 @@ public:
     virtual void render() override;
     virtual void clean() override;
 
+private:
+    void renderBackground();
+    void updateScore();
 };

@@ -20,12 +20,14 @@ public:
     virtual void update(float dt);
     virtual void render();
     virtual void clean();     // 需要清理的资源，在clean()函数里面做。
+
     void safeAddChild(Object* child) { object_to_add_.push_back(child); }
    
     virtual void addChild(Object* child) { children_.push_back(child); }
     virtual void removeChild(Object* child) {
 
-        children_.erase(std::remove(children_.begin(), children_.end(), child), children_.end());
+        children_.erase(std::remove(children_.begin(), 
+            children_.end(), child), children_.end());
     }
 
     ObjectType getType() const { return type_; }

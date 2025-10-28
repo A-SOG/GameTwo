@@ -3,6 +3,7 @@
 #include"affilicate/sprite_anim.h"
 #include"affilicate/collider.h"
 #include "raw/stats.h"
+#include"affilicate/text_label.h"
 void Player::init()
 {
     Actor::init();
@@ -14,7 +15,7 @@ void Player::init()
     collider_ = Collider::addColliderChild(this, sprite_idle_->getSize()/2.0f);
     stats_ = Stats::addStatsChild(this);
     effect_ = Effect::addEffectChild(nullptr, "assect/effect/1764.png", glm::vec2(0), 2.0f);
-    weapon_thunder_ = WeaponThunder::addWeaponThunderChild(this, 2.0f, 40.0f);
+    weapon_thunder_ = WeaponThunder::addWeaponThunderChild(this,0.5f, 40.0f);
 }
 
 void Player::handleEvents(SDL_Event& event)

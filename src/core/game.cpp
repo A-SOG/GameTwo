@@ -6,6 +6,32 @@
 #include "scene.h"
 #include"Actor.h"
 
+void Game::run()
+{
+	while (is_running_) {
+
+		auto start = SDL_GetTicksNS();
+		handleEvents();
+		update(dt_);//计算跟新游戏状态
+		render();
+
+		auto end = SDL_GetTicksNS();
+		auto elapsed = end - start;
+
+		if (elapsed < frame_delay_)
+		{
+			SDL_DelayNS(frame_delay_ - elapsed);//降低延迟
+			dt_ = frame_delay_ / 1.0e9;//1的九次方
+		}
+		else {
+
+			dt_ = elapsed / 1.0e9;
+		}
+
+	
+	}
+}
+
 void Game::init(std::string title , int width, int height) {
 
 
@@ -51,6 +77,10 @@ void Game::init(std::string title , int width, int height) {
 
 	SDL_SetRenderLogicalPresentation(renderer_, width, height, SDL_LOGICAL_PRESENTATION_LETTERBOX);
 
+	//文本引擎
+	ttf_engine_ = TTF_CreateRendererTextEngine(renderer_);
+
+
 	//计算真延迟
 
 	frame_delay_ = 1000000000 / FPS_;
@@ -65,31 +95,6 @@ void Game::init(std::string title , int width, int height) {
 }
 
 
-void Game::run()
-{
-	while (is_running_) {
-
-		auto start = SDL_GetTicksNS();
-		handleEvents();
-		update(dt_);//计算跟新游戏状态
-		render();
-
-		auto end = SDL_GetTicksNS();
-		auto elapsed = end - start;
-
-		if (elapsed < frame_delay_)
-		{
-			SDL_DelayNS(frame_delay_ - elapsed);//降低延迟
-			dt_ = frame_delay_ / 1.0e9;//1的九次方
-		}
-		else {
-
-			dt_ = elapsed / 1.0e9;
-		}
-
-	
-	}
-}
 
 void Game::handleEvents() {
 
@@ -136,6 +141,9 @@ void Game::clean()
 		delete asset_store_;
 	}
 	// 释放渲染器和窗口
+	if (ttf_engine_) {
+		TTF_DestroyRendererTextEngine(ttf_engine_);
+	}
 	if (renderer_) {
 		SDL_DestroyRenderer(renderer_);
 	}
@@ -151,15 +159,34 @@ void Game::clean()
 	SDL_Quit();
 }
 
-void Game::renderTexture(const Texture& texture, const glm::vec2& position, const glm::vec2& size)
+void Game::setScore(int score)
 {
-	SDL_FRect dst_rect = {
-	   position.x,
-	   position.y,
-	   size.x,
-	   size.y
+	score_ = score;
+	if (score_ > high_score_) {
+		high_score_ = score_;
+	}
+}
+
+void Game::addScore(int score)
+{
+	setScore(score_ + score);
+}
+
+void Game::renderTexture(const Texture& texture, const glm::vec2& position, const glm::vec2& size,const glm::vec2&mask)
+{
+	SDL_FRect src_rect = {
+		   texture.src_rect.x,
+		   texture.src_rect.y + texture.src_rect.h * (1 - mask.y),
+		   texture.src_rect.w * mask.x,
+		   texture.src_rect.h * mask.y
 	};
-	SDL_RenderTextureRotated(renderer_, texture.texture, &texture.src_rect, &dst_rect, texture.angle, nullptr, texture.is_flip ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
+	SDL_FRect dst_rect = {
+		position.x,
+		position.y + size.y * (1 - mask.y),
+		size.x * mask.x,
+		size.y * mask.y
+	};
+	SDL_RenderTextureRotated(renderer_, texture.texture, &src_rect, &dst_rect, texture.angle, nullptr, texture.is_flip ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
 }
 
 void Game::renderFillCircle(const glm::vec2& position, const glm::vec2 size, float alpha)
@@ -173,6 +200,27 @@ void Game::renderFillCircle(const glm::vec2& position, const glm::vec2 size, flo
 	};
 	SDL_SetTextureAlphaModFloat(texture, alpha);
 	SDL_RenderTexture(renderer_, texture, NULL, &dst_rect);
+}
+
+void Game::renderHBar(const glm::vec2& position, const glm::vec2& size, float percent, SDL_FColor fcolor)
+{
+	SDL_SetRenderDrawColorFloat(renderer_, fcolor.r, fcolor.g, fcolor.b, fcolor.a);
+	SDL_FRect boundary_rect = {
+		position.x,
+		position.y,
+		size.x,
+		size.y
+	};
+
+	SDL_FRect fill_rect = {
+	   position.x,
+	   position.y,
+	   size.x * percent,
+	   size.y
+	};
+	SDL_RenderRect(renderer_, &boundary_rect);
+	SDL_RenderFillRect(renderer_, &fill_rect);
+	SDL_SetRenderDrawColorFloat(renderer_, 0, 0, 0, 1);
 }
 
 void Game::drawGrid(const glm::vec2& top_left, const glm::vec2& botton_right, float grid_width, SDL_FColor fcolor)
@@ -217,4 +265,11 @@ void Game::drawBoundary(const glm::vec2& top_left, const glm::vec2& botton_right
 
 	//恢复渲染器颜色为黑色
 	SDL_SetRenderDrawColorFloat(renderer_, 0, 0, 0, 1);
+}
+
+TTF_Text* Game::createTTF_Text(const std::string& text, const std::string& font_path, int font_size)
+{
+	auto font = asset_store_->getFont(font_path, font_size);
+	return TTF_CreateText(ttf_engine_, font, text.c_str(), 0);
+
 }
