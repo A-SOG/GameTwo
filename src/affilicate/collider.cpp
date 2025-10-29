@@ -9,7 +9,8 @@ void Collider::render()
 #endif // DEBUG_MODE
 }
 
-Collider* Collider::addColliderChild(ObjectScreen* parent, glm::vec2 size, Type type,Anchor anchor)
+Collider* Collider::addColliderChild(ObjectScreen* parent,
+	glm::vec2 size, Type type,Anchor anchor)
 {
 	auto collider = new Collider();
 	collider->init();

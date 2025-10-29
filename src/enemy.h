@@ -4,7 +4,7 @@
 
 class Enemy :public Actor
 {
-private:
+protected:
 	enum class State {
 		NORMAL,
 		HURT,
@@ -24,15 +24,16 @@ public:
 	static Enemy* addEnemyChild(Object* parent, glm::vec2 pos, Player* target);
 	virtual void init()override;
 	virtual void update(float dt) override;
+    Player* get_target() { return target_; }
+	void setTarget(Player* target) { target_ = target; }
 
-
+private:
 	void aim_target(Player* target);
 	void checkState();
 	void changeState(State new_state);
 	void attack();
 	void remove();
 
-	Player* get_target() { return target_; }
-	void setTarget(Player* target) { target_ = target; }
+	
 
 };

@@ -26,7 +26,7 @@ class Game {
 	TTF_TextEngine* ttf_engine_ = nullptr;
 	std::mt19937 gen_ = std::mt19937(std::random_device{}());
 	//私有构造函数
-
+	Scene* next_scene_ = nullptr;//跳转
 	Uint64 FPS_ = 60;//fps
 	Uint64 frame_delay_ = 0;//帧延长，单位ns
 	float dt_ = 0.0f;//帧间隔
@@ -60,6 +60,10 @@ public:
 	void render();
 	void clean();
 
+
+	void safeChangeScene(Scene* scene) { next_scene_ = scene; }
+	void changeScene(Scene* scene);
+
 	//获取数据
 	glm::vec2 getScreenSize()const { return screen_size_; }//屏幕大小
 	Scene* getCurrentScene()const { return current_scene_; }//获取当前场景
@@ -76,20 +80,45 @@ public:
 	// 获取最高分
 	int getHighScore() const { return high_score_; } 
 	void addScore(int score);
-	void renderTexture(const Texture& texture, const glm::vec2& position, const glm::vec2& size,const glm::vec2&mask=glm::vec2(1.0f));// 渲染纹理
+
+	void quit() { is_running_ = false; }
+
+	//声音
+	void playMusic(const std::string& music_path, bool loop = true) 
+	{ Mix_PlayMusic(asset_store_->getMusic(music_path), loop ? -1 : 0); } //-1代表无限循环
+	void playSound(const std::string& sound_path)
+	{ Mix_PlayChannel(-1, asset_store_->getSound(sound_path), 0); }
+	void stopMusic() { Mix_HaltMusic(); }
+	void stopSound() { Mix_HaltChannel(-1); }       // 停止所有音效
+	void pauseMusic() { Mix_PauseMusic(); }
+	void pauseSound() { Mix_Pause(-1); }
+	void resumeMusic() { Mix_ResumeMusic(); }
+	void resumeSound() { Mix_Resume(-1); }
+	void renderTexture(const Texture& texture, const glm::vec2& position, 
+		const glm::vec2& size,const glm::vec2&mask=glm::vec2(1.0f));// 渲染纹理
+
 
 	//渲染圆形纹理
-	void renderFillCircle(const glm::vec2& position, const glm::vec2 size, float alpha);
+	void renderFillCircle(const glm::vec2& position, 
+		const glm::vec2 size, float alpha);
 
 	//渲染能量条
-	void renderHBar(const glm::vec2& position, const glm::vec2& size, float percent, SDL_FColor color);
+	void renderHBar(const glm::vec2& position, 
+		const glm::vec2& size, float percent, SDL_FColor color);
 
 	//工具函数
-	void drawGrid(const glm::vec2& top_left, const glm::vec2& botton_right, float grid_width, SDL_FColor fcolor); // 绘制网格
-	void drawBoundary(const glm::vec2& top_left, const glm::vec2& botton_right, float boundary_width, SDL_FColor fcolor); // 绘制边界
+	void drawGrid(const glm::vec2& top_left, 
+		const glm::vec2& botton_right, float grid_width, SDL_FColor fcolor); // 绘制网格
+	void drawBoundary(const glm::vec2& top_left, 
+		const glm::vec2& botton_right, float boundary_width, SDL_FColor fcolor); // 绘制边界
 	// 文字函数
 	TTF_Text* createTTF_Text(const std::string& text, const std::string& font_path, int font_size = 16);
+	
+	
+	bool isMouseInRect(const glm::vec2& top_left, const glm::vec2& botton_right);
 	//随机数生成
+	std::string loadTextFile(const std::string& file_path);
+
 
 	float randomFloat(float min,float max)
 	{

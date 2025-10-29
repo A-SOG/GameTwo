@@ -14,12 +14,15 @@ public:
         const std::string& text, glm::vec2 render_pos, 
         glm::vec2 size, const std::string& font_path = 
         "assect/font/VonwaonBitmap-16px.ttf", int font_size = 32,
-        const std::string& bg_path = "assect/UI/Textfield_01.png", Anchor anchor = Anchor::CENTER);
+        const std::string& bg_path = "assect/UI/Textfield_01.png",
+        Anchor anchor = Anchor::CENTER);
 
    
     void setTextLabel(TextLabel* text_label) { text_label_ = text_label; }
 
     void setSpriteBg(Sprite* sprite) { sprite_bg_ = sprite; }
+
+    void setBgSizeByText(float margin = 50.0f);
 
     TextLabel* getTextLabel() const { return text_label_; }
 

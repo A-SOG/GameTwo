@@ -2,15 +2,20 @@
 #include"../scene_main.h"
 #include"object_scrren.h"
 #include"object_world.h"
+#include "../scene_title.h"
 #include"../affilicate/sprite.h"
 #include "scene.h"
 #include"Actor.h"
-
+#include <fstream>
 void Game::run()
 {
 	while (is_running_) {
 
 		auto start = SDL_GetTicksNS();
+		if (next_scene_) {
+			changeScene(next_scene_);
+			next_scene_ = nullptr;
+		}
 		handleEvents();
 		update(dt_);//计算跟新游戏状态
 		render();
@@ -90,7 +95,7 @@ void Game::init(std::string title , int width, int height) {
 
 	//创建场景
 
-	current_scene_ = new SceneMain();
+	current_scene_ = new SceneTitle();
 	current_scene_->init();
 }
 
@@ -159,6 +164,17 @@ void Game::clean()
 	SDL_Quit();
 }
 
+void Game::changeScene(Scene* scene)
+{
+
+	if (current_scene_) {
+		current_scene_->clean();
+		delete current_scene_;
+	}
+	current_scene_ = scene;
+	current_scene_->init();
+}
+
 void Game::setScore(int score)
 {
 	score_ = score;
@@ -186,7 +202,8 @@ void Game::renderTexture(const Texture& texture, const glm::vec2& position, cons
 		size.x * mask.x,
 		size.y * mask.y
 	};
-	SDL_RenderTextureRotated(renderer_, texture.texture, &src_rect, &dst_rect, texture.angle, nullptr, texture.is_flip ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
+	SDL_RenderTextureRotated(renderer_, texture.texture, &src_rect, &dst_rect, 
+		texture.angle, nullptr, texture.is_flip ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
 }
 
 void Game::renderFillCircle(const glm::vec2& position, const glm::vec2 size, float alpha)
@@ -272,4 +289,22 @@ TTF_Text* Game::createTTF_Text(const std::string& text, const std::string& font_
 	auto font = asset_store_->getFont(font_path, font_size);
 	return TTF_CreateText(ttf_engine_, font, text.c_str(), 0);
 
+}
+bool Game::isMouseInRect(const glm::vec2& top_left, const glm::vec2& botton_right)
+{
+	if (mouse_position_.x >= top_left.x && mouse_position_.x <= botton_right.x && mouse_position_.y >= top_left.y && mouse_position_.y <= botton_right.y) {
+		return true;
+	}
+	return false;
+}
+
+std::string Game::loadTextFile(const std::string& file_path)
+{
+	std::ifstream file(file_path);
+	std::string line;
+	std::string text;
+	while (std::getline(file, line)) {
+		text += line + "\n";
+	}
+	return text;
 }

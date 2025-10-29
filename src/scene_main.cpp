@@ -9,6 +9,10 @@
 #include "screen/hud_text.h"
 void SceneMain::init()
 {
+
+	game_.playMusic("assect/bgm/OhMyGhost.ogg");
+
+
 	//初始化世界大小
 	SDL_HideCursor();
 	world_size_ = game_.getScreenSize() * 3.0f;

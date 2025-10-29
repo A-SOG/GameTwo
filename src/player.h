@@ -17,7 +17,7 @@ public:
     virtual void update(float dt) override;
     virtual void render() override;
     virtual void clean() override;
-
+    virtual void takeDamage(float damage) override;//玩家造成的伤害音效
 
     void keyboardControl();
     void syncCamera();

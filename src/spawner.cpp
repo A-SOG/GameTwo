@@ -10,6 +10,7 @@ void Spawner::update(float dt)
 	if (timer_ >= interval_)
 	{
 		timer_ = 0;
+		game_.playSound("assect/sound/silly-ghost-sound-242342.mp3");
 		for (int i = 0; i < num_; i++)
 		{
 			auto pos = game_.randomVec2(

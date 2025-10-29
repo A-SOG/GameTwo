@@ -9,10 +9,8 @@ Enemy* Enemy::addEnemyChild(Object* parent, glm::vec2 pos, Player* target)
     enemy->init();
     enemy->setPosition(pos);
     enemy->setTarget(target);
-    if (parent)
-    {
-        parent->addChild(enemy);
-    }
+    if (parent) parent->addChild(enemy);
+  
     return enemy;
 
 }
@@ -82,15 +80,15 @@ void Enemy::changeState(State new_state)
     current_anim_->setActive(false);
     switch (new_state)
     {
-    case Enemy::State::NORMAL:
+    case State::NORMAL:
         current_anim_ = anim_normal_;
         current_anim_->setActive(false);
         break;
-    case Enemy::State::HURT:
+    case State::HURT:
         current_anim_ = anim_hurt_;
         current_anim_->setActive(true);
         break;
-    case Enemy::State::DIE:
+    case State::DIE:
         current_anim_ = anim_die_;
         current_anim_->setActive(true);
         game_.addScore(score_);
